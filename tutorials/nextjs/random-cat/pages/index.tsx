@@ -5,15 +5,25 @@ const IndexPage: NextPage = () => {
   // 状態を定義
   const [imageUrl, setImageUrl] = useState("");
   const [loading, setLoading] = useState(true);
-  // マウント時に画像を読み込む宣言
   useEffect(() => {
     fetchImage().then((newImage) => {
-      setImageUrl(newImage.url); // 画像URLの状態を更新
-      setLoading(false); // ローディング状態を更新
+      setImageUrl(newImage.url);
+      setLoading(false);
     });
   }, []);
-  // ローディング中でなければ画像を表示
-  return <div>{loading || <img src={imageUrl} />}</div>;
+  // ボタンクリック時に画像を読み込む処理
+  const handleClick = async () => {
+    setLoading(true); // 読み込み中フラグを立てる
+    const newImage = await fetchImage();
+    setImageUrl(newImage.url); // 画像URLの状態を更新
+    setLoading(false); // 読み込み中フラグを倒す
+  };
+  return (
+    <div>
+      <button onClick={handleClick}>他のにゃんこも見る</button>
+      <div>{loading || <img src={imageUrl} />}</div>
+    </div>
+  );
 };
 export default IndexPage;
 
