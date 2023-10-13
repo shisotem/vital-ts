@@ -1,7 +1,19 @@
 import { NextPage } from "next";
+import { useEffect, useState } from "react";
 
 const IndexPage: NextPage = () => {
-  return <div>ねこ画像予定地</div>;
+  // 状態を定義
+  const [imageUrl, setImageUrl] = useState("");
+  const [loading, setLoading] = useState(true);
+  // マウント時に画像を読み込む宣言
+  useEffect(() => {
+    fetchImage().then((newImage) => {
+      setImageUrl(newImage.url); // 画像URLの状態を更新
+      setLoading(false); // ローディング状態を更新
+    });
+  }, []);
+  // ローディング中でなければ画像を表示
+  return <div>{loading || <img src={imageUrl} />}</div>;
 };
 export default IndexPage;
 
@@ -14,7 +26,3 @@ const fetchImage = async (): Promise<Image> => {
   console.log(images);
   return images[0];
 };
-
-fetchImage().then((image) => {
-  console.log(image.alt); // => compile error
-});
