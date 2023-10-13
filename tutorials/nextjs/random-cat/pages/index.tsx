@@ -11,3 +11,7 @@ const fetchImage = async () => {
   console.log(images);
   return images[0];
 };
+
+fetchImage().then((image) => {
+  console.log(image.alt); // => undefined（imageがany型であるため、存在しないプロパティaltを参照してもコンパイルエラーにならない…）
+});
