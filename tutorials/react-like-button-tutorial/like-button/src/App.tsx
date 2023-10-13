@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 function App() {
@@ -12,8 +12,15 @@ function App() {
 }
 
 function LikeButton() {
-  const count = 999;
-  return <span className="likeButton">✦ {count}</span>;
+  const [count, setCount] = useState(999);
+  const handleClick = () => {
+    setCount(count + 1);
+  };
+  return (
+    <span className="likeButton" onClick={handleClick}>
+      ✦ {count}
+    </span>
+  );
 }
 
 export default App;
