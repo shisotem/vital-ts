@@ -5,7 +5,10 @@ const IndexPage: NextPage = () => {
 };
 export default IndexPage;
 
-const fetchImage = async () => {
+type Image = {
+  url: string;
+};
+const fetchImage = async (): Promise<Image> => {
   const res = await fetch("https://api.thecatapi.com/v1/images/search");
   const images = await res.json();
   console.log(images);
@@ -13,5 +16,5 @@ const fetchImage = async () => {
 };
 
 fetchImage().then((image) => {
-  console.log(image.alt); // => undefined（imageがany型であるため、存在しないプロパティaltを参照してもコンパイルエラーにならない…）
+  console.log(image.alt); // => compile error
 });
