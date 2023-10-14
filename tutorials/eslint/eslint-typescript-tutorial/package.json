@@ -3,6 +3,9 @@
   "license": "UNLICENSED",
   "devDependencies": {
     "@types/node": "^16",
+    "@typescript-eslint/eslint-plugin": "^5",
+    "@typescript-eslint/parser": "^5",
+    "eslint": "^8",
     "typescript": "^4.6"
   }
 }
