@@ -8,9 +8,5 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  rules: {
-    "no-console": "error",
-    camelcase: ["error", { properties: "never" }],
-    semi: ["error", "always"],
-  },
+  extends: ["airbnb-base"],
 };
